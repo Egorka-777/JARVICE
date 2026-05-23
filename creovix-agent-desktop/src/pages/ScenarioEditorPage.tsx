@@ -49,10 +49,10 @@ export function ScenarioEditorPage() {
       setDataFilePath(selected);
       try {
         const rows = await readCsv(selected);
-        setCsvPreview(`CSV OK: ${rows.length} row(s) loaded for validation`);
+        setCsvPreview(`CSV проверен: строк найдено — ${rows.length}`);
       } catch (e) {
         setCsvPreview(
-          e instanceof Error ? e.message : "CSV validation failed",
+          e instanceof Error ? e.message : "CSV не прошёл проверку",
         );
       }
     }
@@ -80,11 +80,11 @@ export function ScenarioEditorPage() {
     setSaveError(null);
     try {
       if (!name.trim()) {
-        setSaveError("Scenario name is required");
+        setSaveError("Укажите название сценария");
         return;
       }
       if (!dataFilePath.trim()) {
-        setSaveError("CSV file path is required");
+        setSaveError("Укажите путь к CSV-файлу");
         return;
       }
       await readCsv(dataFilePath);
@@ -99,15 +99,17 @@ export function ScenarioEditorPage() {
   };
 
   if (!ready) {
-    return <p className="muted">Initializing database…</p>;
+    return <p className="muted">Инициализация базы данных…</p>;
   }
 
   return (
     <div>
-      <h2 className="page-title">{isNew ? "New scenario" : `Edit #${id}`}</h2>
+      <h2 className="page-title">
+        {isNew ? "Новый сценарий" : `Редактирование #${id}`}
+      </h2>
       <div className="toolbar">
         <Link className="btn" to="/">
-          Cancel
+          Назад
         </Link>
         <button
           type="button"
@@ -115,7 +117,7 @@ export function ScenarioEditorPage() {
           disabled={loading}
           onClick={() => void handleSave()}
         >
-          {loading ? "Saving…" : "Save"}
+          {loading ? "Сохранение…" : "Сохранить"}
         </button>
       </div>
 
@@ -125,11 +127,11 @@ export function ScenarioEditorPage() {
 
       <div className="form-grid card">
         <label>
-          Name
+          Название
           <input value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <label>
-          CSV file path
+          Путь к CSV-файлу
           <div className="inline-field">
             <input
               value={dataFilePath}
@@ -137,7 +139,7 @@ export function ScenarioEditorPage() {
               placeholder="C:\data\rows.csv"
             />
             <button type="button" onClick={() => void pickCsv()}>
-              Browse
+              Выбрать
             </button>
           </div>
         </label>
@@ -145,9 +147,9 @@ export function ScenarioEditorPage() {
       </div>
 
       <div className="toolbar">
-        <h3>Steps</h3>
+        <h3>Шаги</h3>
         <button type="button" onClick={addStep}>
-          Add step
+          Добавить шаг
         </button>
       </div>
 

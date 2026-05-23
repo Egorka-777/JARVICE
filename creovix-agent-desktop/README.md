@@ -1,5 +1,47 @@
 # Creovix Agent Desktop
 
+# Как запустить
+
+1. Откройте PowerShell в папке проекта.
+2. Выполните:
+
+```powershell
+cd creovix-agent-desktop
+npm install
+npm run tauri dev
+```
+
+3. Должно открыться desktop-окно **«Джарвис / Creovix Agent»**.
+
+4. Первый тест:
+   - нажмите **«Загрузить тест Bing»**;
+   - нажмите **«Запустить»**;
+   - дождитесь модального окна;
+   - нажмите **«Продолжить»**;
+   - откройте **«Лог»**;
+   - проверьте, что в CSV поле `Status` стало `done`.
+
+5. Сборка Windows:
+
+```powershell
+npm run tauri build
+```
+
+6. Установщик ищите в:
+
+`src-tauri/target/release/bundle/`
+
+7. Не реализовано:
+   - AI-агент;
+   - AutoHotkey;
+   - XLSX;
+   - облако;
+   - обход капчи;
+   - автоплатежи;
+   - хранение паролей.
+
+---
+
 ## Pass 2 — Runner + logging
 
 - `scripts/runner.js` — Playwright + `better-sqlite3` + `csv-parser`
@@ -11,8 +53,8 @@
 ### Run from UI
 
 1. `npm run tauri dev`
-2. **Load Bing test** → **Run** → open **Log**
-3. On confirm modal → **Continue** or **Stop**
+2. **Загрузить тест Bing** → **Запустить** → **Лог**
+3. В модалке → **Продолжить** или **Остановить**
 
 ---
 
@@ -80,6 +122,6 @@ Variables in templates: `%SiteUrl%`, `%LinkToInsert%`, etc. (`src/utils/variable
 
 ### Database
 
-File: `sqlite:creovix.db` (managed by Tauri SQL plugin, app data directory).
+File: `sqlite:creovix.db` в каталоге `app_config_dir` (тот же путь, что `get_app_paths().dbPath` для runner).
 
 Tables: `scenarios`, `steps`, `run_logs`.

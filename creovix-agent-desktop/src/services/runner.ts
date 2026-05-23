@@ -88,7 +88,7 @@ export async function startRun(scenarioId: number): Promise<void> {
   }
 
   const command = Command.create(
-    "node",
+    "node-runner",
     [paths.runnerScript, scenarioId.toString()],
     {
       cwd: paths.projectRoot,

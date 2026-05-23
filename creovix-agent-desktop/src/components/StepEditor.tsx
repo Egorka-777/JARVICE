@@ -15,14 +15,14 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
     <div className="card step-editor">
       <div className="step-row">
         <label>
-          Label
+          Название шага
           <input
             value={step.label}
             onChange={(e) => onChange({ label: e.target.value })}
           />
         </label>
         <label>
-          Type
+          Тип
           <select
             value={step.type}
             onChange={(e) => onChange({ type: e.target.value })}
@@ -35,13 +35,13 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
           </select>
         </label>
         <button type="button" className="danger" onClick={onRemove}>
-          Delete step
+          Удалить шаг
         </button>
       </div>
 
       {type === "open_url" && (
         <label>
-          URL template
+          Шаблон URL
           <input
             value={step.urlTemplate}
             onChange={(e) => onChange({ urlTemplate: e.target.value })}
@@ -53,14 +53,14 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
       {type === "fill_field" && (
         <>
           <label>
-            Selector
+            CSS-селектор / locator
             <input
               value={step.selector}
               onChange={(e) => onChange({ selector: e.target.value })}
             />
           </label>
           <label>
-            Value template
+            Шаблон значения
             <input
               value={step.valueTemplate}
               onChange={(e) => onChange({ valueTemplate: e.target.value })}
@@ -73,14 +73,14 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
       {type === "click" && (
         <>
           <label>
-            Selector
+            CSS-селектор / locator
             <input
               value={step.selector}
               onChange={(e) => onChange({ selector: e.target.value })}
             />
           </label>
           <label>
-            Press key (optional, e.g. Enter)
+            Клавиша вместо клика, если нужна
             <input
               value={step.valueTemplate}
               onChange={(e) => onChange({ valueTemplate: e.target.value })}
@@ -92,7 +92,7 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
 
       {type === "wait" && (
         <label>
-          Milliseconds
+          Задержка, мс
           <input
             type="number"
             min={0}
@@ -106,7 +106,7 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
 
       {type === "confirm" && (
         <label>
-          Message template
+          Текст подтверждения
           <textarea
             value={step.messageTemplate}
             onChange={(e) => onChange({ messageTemplate: e.target.value })}
@@ -116,7 +116,7 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
 
       {type === "write_status" && (
         <label>
-          Status value
+          Значение статуса
           <input
             value={step.status}
             onChange={(e) => onChange({ status: e.target.value })}
@@ -131,7 +131,7 @@ export function StepEditor({ step, index, onChange, onRemove }: StepEditorProps)
           checked={step.requiresConfirmation}
           onChange={(e) => onChange({ requiresConfirmation: e.target.checked })}
         />
-        Requires confirmation (step #{index + 1})
+        Требует подтверждения, шаг #{index + 1}
       </label>
     </div>
   );

@@ -16,10 +16,10 @@ export function ConfirmModal({ message, onContinue, onStop }: ConfirmModalProps)
         </p>
         <div className="modal-actions">
           <button type="button" className="danger" onClick={onStop}>
-            Stop
+            Остановить
           </button>
           <button type="button" className="primary" onClick={onContinue}>
-            Continue
+            Продолжить
           </button>
         </div>
       </div>

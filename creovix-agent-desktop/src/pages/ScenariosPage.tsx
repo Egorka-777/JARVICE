@@ -53,21 +53,21 @@ export function ScenariosPage() {
   };
 
   if (!ready) {
-    return <p className="muted">Initializing database…</p>;
+    return <p className="muted">Инициализация базы данных…</p>;
   }
 
   return (
     <div>
-      <h2 className="page-title">Scenarios</h2>
+      <h2 className="page-title">Сценарии</h2>
       <div className="toolbar">
         <Link className="btn primary" to="/new">
-          New Scenario
+          Новый сценарий
         </Link>
         <button type="button" onClick={() => void handleSeedBing()}>
-          Load Bing test
+          Загрузить тест Bing
         </button>
         <button type="button" onClick={() => void load()}>
-          Refresh
+          Обновить
         </button>
       </div>
 
@@ -77,17 +77,17 @@ export function ScenariosPage() {
 
       {scenarios.length === 0 ? (
         <p className="muted">
-          No scenarios yet. Create one or load the Bing test scenario.
+          Сценариев пока нет. Создайте новый сценарий или загрузите тест Bing.
         </p>
       ) : (
         <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>CSV path</th>
-              <th>Updated</th>
-              <th>Actions</th>
+              <th>Название</th>
+              <th>Путь к CSV</th>
+              <th>Обновлено</th>
+              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -100,7 +100,7 @@ export function ScenariosPage() {
                 <td>
                   <div className="toolbar" style={{ marginBottom: 0 }}>
                     <Link className="btn" to={`/scenario/${s.id}`}>
-                      Edit
+                      Изменить
                     </Link>
                     <button
                       type="button"
@@ -108,10 +108,10 @@ export function ScenariosPage() {
                       disabled={runningId === s.id}
                       onClick={() => void handleRun(s.id)}
                     >
-                      {runningId === s.id ? "Starting…" : "Run"}
+                      {runningId === s.id ? "Запуск…" : "Запустить"}
                     </button>
                     <Link className="btn" to={`/logs/${s.id}`}>
-                      Log
+                      Лог
                     </Link>
                   </div>
                 </td>

@@ -16,7 +16,7 @@ export function RunLogPage() {
     if (!ready || Number.isNaN(scenarioId)) return;
     try {
       const scenario = await getScenarioById(scenarioId);
-      setScenarioName(scenario?.name ?? `Scenario #${scenarioId}`);
+      setScenarioName(scenario?.name ?? `Сценарий #${scenarioId}`);
       setLogs(await getRunLogsByScenarioId(scenarioId));
       setError(null);
     } catch (e) {
@@ -37,40 +37,42 @@ export function RunLogPage() {
   }, [ready, scenarioId, load]);
 
   if (Number.isNaN(scenarioId)) {
-    return <div className="error-box">Invalid scenario id in URL</div>;
+    return <div className="error-box">Некорректный ID сценария в URL</div>;
   }
 
   if (!ready) {
-    return <p className="muted">Initializing database…</p>;
+    return <p className="muted">Инициализация базы данных…</p>;
   }
 
   return (
     <div>
-      <h2 className="page-title">Run log — {scenarioName}</h2>
+      <h2 className="page-title">Лог запуска — {scenarioName}</h2>
       <div className="toolbar">
         <Link className="btn" to="/">
-          Scenarios
+          Сценарии
         </Link>
         <Link className="btn" to={`/scenario/${scenarioId}`}>
-          Edit scenario
+          Изменить сценарий
         </Link>
       </div>
 
       {error && <div className="error-box">{error}</div>}
 
-      <p className="muted">Auto-refresh every 2 seconds (newest at bottom)</p>
+      <p className="muted">
+        Автообновление каждые 2 секунды. Новые записи внизу.
+      </p>
 
       {logs.length === 0 ? (
-        <p className="muted">No log entries for this scenario yet.</p>
+        <p className="muted">Для этого сценария пока нет записей лога.</p>
       ) : (
         <table>
           <thead>
             <tr>
-              <th>Timestamp</th>
-              <th>Step</th>
-              <th>Status</th>
-              <th>Message</th>
-              <th>Screenshot</th>
+              <th>Время</th>
+              <th>Шаг</th>
+              <th>Статус</th>
+              <th>Сообщение</th>
+              <th>Скриншот</th>
             </tr>
           </thead>
           <tbody>

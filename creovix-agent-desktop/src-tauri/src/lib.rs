@@ -24,13 +24,17 @@ fn get_app_paths(app: tauri::AppHandle) -> Result<AppPaths, String> {
             .map_err(|e| e.to_string())?
     };
 
+    let config_dir = app.path().app_config_dir().map_err(|e| e.to_string())?;
+    std::fs::create_dir_all(&config_dir).map_err(|e| e.to_string())?;
+
     let data_dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
     std::fs::create_dir_all(&data_dir).map_err(|e| e.to_string())?;
 
     let screenshots_dir = data_dir.join("screenshots");
     std::fs::create_dir_all(&screenshots_dir).map_err(|e| e.to_string())?;
 
-    let db_path = data_dir.join("creovix.db");
+    // Same file as Database.load("sqlite:creovix.db") — plugin-sql uses app_config_dir.
+    let db_path = config_dir.join("creovix.db");
     let runner_script = project_root.join("scripts").join("runner.js");
 
     Ok(AppPaths {
@@ -47,6 +51,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_sql::Builder::default().build())
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_fs::init())
         .invoke_handler(tauri::generate_handler![get_app_paths])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -9,9 +9,9 @@ export default function App() {
     <ConfirmationProvider>
       <div className="app-shell">
         <header className="app-header">
-          <h1>Creovix Agent Desktop</h1>
+          <h1>Джарвис / Creovix Agent</h1>
           <nav className="app-nav">
-            <Link to="/">Scenarios</Link>
+            <Link to="/">Сценарии</Link>
           </nav>
         </header>
         <main className="app-main">
