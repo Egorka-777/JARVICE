@@ -1,0 +1,8 @@
+node_modules/
+dist/
+src-tauri/target/
+automation/dist/
+automation/node_modules/
+.DS_Store
+*.log
+.env

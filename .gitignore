@@ -1,0 +1,14 @@
+# Dependencies & build
+**/node_modules/
+**/dist/
+**/*.tsbuildinfo
+**/src-tauri/target/
+**/.DS_Store
+*.log
+.env
+.env.*
+
+# Playwright browsers cache (local)
+**/test-screenshots/
+**/test-logs/
+**/test-signals/

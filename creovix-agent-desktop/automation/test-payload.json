@@ -1,0 +1,51 @@
+{
+  "runId": "test-run-1",
+  "scenarioId": "test",
+  "scenarioName": "Bing test",
+  "dataFilePath": "d:/JARVICE/creovix-agent-desktop/sample-data/bing-test-run.csv",
+  "steps": [
+    {
+      "id": "1",
+      "orderIndex": 0,
+      "type": "open_url",
+      "label": "Open Bing",
+      "configJson": "{\"urlTemplate\":\"%SiteUrl%\"}",
+      "requiresConfirmation": false
+    },
+    {
+      "id": "2",
+      "orderIndex": 1,
+      "type": "fill_field",
+      "label": "Fill search",
+      "configJson": "{\"selector\":\"textarea#sb_form_q, input[name=\\\"q\\\"]\",\"valueTemplate\":\"%LinkToInsert% %TextToInsert%\"}",
+      "requiresConfirmation": false
+    },
+    {
+      "id": "3",
+      "orderIndex": 2,
+      "type": "confirm",
+      "label": "Confirm",
+      "configJson": "{\"messageTemplate\":\"Проверь поисковый запрос перед Enter\"}",
+      "requiresConfirmation": true
+    },
+    {
+      "id": "4",
+      "orderIndex": 3,
+      "type": "click",
+      "label": "Press Enter",
+      "configJson": "{\"selector\":\"textarea#sb_form_q, input[name=\\\"q\\\"]\",\"pressKey\":\"Enter\"}",
+      "requiresConfirmation": true
+    },
+    {
+      "id": "5",
+      "orderIndex": 4,
+      "type": "write_status",
+      "label": "Done",
+      "configJson": "{\"status\":\"done\"}",
+      "requiresConfirmation": false
+    }
+  ],
+  "logsDir": "d:/JARVICE/creovix-agent-desktop/test-logs",
+  "screenshotsDir": "d:/JARVICE/creovix-agent-desktop/test-screenshots",
+  "signalsDir": "d:/JARVICE/creovix-agent-desktop/test-signals"
+}
