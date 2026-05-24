@@ -36,9 +36,18 @@ function resolveNodeExe() {
 
 console.log("[prepare-runtime] Preparing bundled runner for Windows release…");
 
-const nodeExe = resolveNodeExe();
-console.log("[prepare-runtime] Using Node:", nodeExe);
+const runnerScript = join(payloadDir, "scripts", "runner.js");
+const chromiumDir = join(browsersDir, "chromium-1223");
+if (
+  existsSync(sidecarPath) &&
+  existsSync(runnerScript) &&
+  existsSync(chromiumDir)
+) {
+  console.log("[prepare-runtime] Already prepared — skipping.");
+  process.exit(0);
+}
 
+const nodeExe = resolveNodeExe();
 rmSync(payloadDir, { recursive: true, force: true });
 mkdirSync(join(payloadDir, "scripts"), { recursive: true });
 mkdirSync(binariesDir, { recursive: true });

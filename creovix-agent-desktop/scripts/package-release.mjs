@@ -1,7 +1,7 @@
 /**
  * Copies portable app folder into d:\JARVICE\release\JARVICE-Portable
  */
-import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -27,10 +27,14 @@ if (existsSync(join(buildDir, "runtime"))) {
   });
 }
 
-cpSync(
-  join(buildDir, "bundle", "nsis", "J.A.R.V.I.C.E_0.1.0_x64-setup.exe"),
-  join(root, "..", "release", "JARVICE-Setup.exe"),
+const nsisDir = join(buildDir, "bundle", "nsis");
+const setupExe = readdirSync(nsisDir).find((name) =>
+  name.endsWith("_x64-setup.exe"),
 );
+if (!setupExe) {
+  throw new Error(`Setup exe not found in ${nsisDir}`);
+}
+cpSync(join(nsisDir, setupExe), join(root, "..", "release", "JARVICE-Setup.exe"));
 
 const staleRootExe = join(root, "..", "release", "JARVICE.exe");
 if (existsSync(staleRootExe)) {
