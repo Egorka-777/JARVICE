@@ -21,15 +21,13 @@ npm run tauri dev
    - откройте **«Лог»**;
    - проверьте, что в CSV поле `Status` стало `done`.
 
-5. Сборка Windows:
+5. Сборка Windows (внутри exe уже упакованы Node + Playwright + Chromium):
 
 ```powershell
 npm run tauri build
 ```
 
-6. Установщик ищите в:
-
-`src-tauri/target/release/bundle/`
+Готовые файлы также копируются в `d:\JARVICE\release\` — **JARVICE.exe** и **JARVICE-Setup.exe**. Для пользователя Node.js не нужен.
 
 7. Не реализовано:
    - AI-агент;

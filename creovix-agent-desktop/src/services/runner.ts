@@ -9,6 +9,8 @@ interface AppPaths {
   dbPath: string;
   screenshotsDir: string;
   runnerScript: string;
+  playwrightBrowsersPath: string;
+  bundledRuntime: boolean;
 }
 
 interface RunnerMessage {
@@ -87,17 +89,23 @@ export async function startRun(scenarioId: number): Promise<void> {
     throw new Error("Runner script path is empty");
   }
 
-  const command = Command.create(
-    "node-runner",
-    [paths.runnerScript, scenarioId.toString()],
-    {
-      cwd: paths.projectRoot,
-      env: {
-        CREOVIX_DB_PATH: paths.dbPath,
-        CREOVIX_SCREENSHOTS_DIR: paths.screenshotsDir,
-      },
-    },
-  );
+  const spawnEnv: Record<string, string> = {
+    CREOVIX_DB_PATH: paths.dbPath,
+    CREOVIX_SCREENSHOTS_DIR: paths.screenshotsDir,
+  };
+  if (paths.playwrightBrowsersPath) {
+    spawnEnv.PLAYWRIGHT_BROWSERS_PATH = paths.playwrightBrowsersPath;
+  }
+
+  const command = paths.bundledRuntime
+    ? Command.sidecar("binaries/node", [paths.runnerScript, scenarioId.toString()], {
+        cwd: paths.projectRoot,
+        env: spawnEnv,
+      })
+    : Command.create("node-runner", [paths.runnerScript, scenarioId.toString()], {
+        cwd: paths.projectRoot,
+        env: spawnEnv,
+      });
 
   command.stdout.on("data", (line) => {
     appendStdout(String(line));
