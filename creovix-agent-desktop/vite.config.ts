@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  // Relative paths so bundled UI loads in Tauri release (tauri:// / asset protocol).
+  base: "./",
   plugins: [react()],
   clearScreen: false,
   server: {

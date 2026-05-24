@@ -11,6 +11,39 @@ struct AppPaths {
     runner_script: String,
 }
 
+fn find_project_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    if let Ok(env_root) = std::env::var("CREOVIX_PROJECT_ROOT") {
+        let root = PathBuf::from(&env_root);
+        if root.join("scripts").join("runner.js").is_file() {
+            return Ok(root);
+        }
+    }
+
+    if let Ok(exe_dir) = app.path().executable_dir() {
+        let mut dir = exe_dir;
+        for _ in 0..6 {
+            if dir.join("scripts").join("runner.js").is_file() {
+                return Ok(dir);
+            }
+            let Some(parent) = dir.parent() else {
+                break;
+            };
+            dir = parent.to_path_buf();
+        }
+    }
+
+    let resource = app.path().resource_dir().map_err(|e| e.to_string())?;
+    if resource.join("scripts").join("runner.js").is_file() {
+        return Ok(resource);
+    }
+
+    Err(
+        "Не найден scripts/runner.js. Установите Node.js, выполните npm install в creovix-agent-desktop \
+         или задайте переменную CREOVIX_PROJECT_ROOT."
+            .to_string(),
+    )
+}
+
 #[tauri::command]
 fn get_app_paths(app: tauri::AppHandle) -> Result<AppPaths, String> {
     let project_root = if cfg!(debug_assertions) {
@@ -19,9 +52,7 @@ fn get_app_paths(app: tauri::AppHandle) -> Result<AppPaths, String> {
             .canonicalize()
             .map_err(|e| e.to_string())?
     } else {
-        app.path()
-            .resource_dir()
-            .map_err(|e| e.to_string())?
+        find_project_root(&app)?
     };
 
     let config_dir = app.path().app_config_dir().map_err(|e| e.to_string())?;
