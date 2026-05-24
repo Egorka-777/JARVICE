@@ -17,7 +17,7 @@ export async function seedBingTestScenario(): Promise<{
   const csvPath = await join(sampleDir, "bing-test.csv");
   await writeTextFile(
     csvPath,
-    "ID,SiteUrl,LinkToInsert,TextToInsert,Quantity,Status,Comment\n1,https://www.bing.com,https://example.com/video-test,Проверка Creovix Agent Desktop,1,pending,\n",
+    "ID,SiteUrl,LinkToInsert,TextToInsert,Quantity,Status,Comment\n1,https://www.bing.com,https://example.com/video-test,Проверка J.A.R.V.I.C.E,1,pending,\n",
   );
 
   const scenario = await createScenario("Bing search test", csvPath);

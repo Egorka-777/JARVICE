@@ -19,7 +19,7 @@ const sampleDir = path.join(path.dirname(dbPath), "sample-data");
 fs.mkdirSync(sampleDir, { recursive: true });
 const csvPath = path.join(sampleDir, "bing-test.csv");
 const csvContent = `ID,SiteUrl,LinkToInsert,TextToInsert,Quantity,Status,Comment
-1,https://www.bing.com,https://example.com/video-test,Проверка Creovix Agent Desktop,1,pending,
+1,https://www.bing.com,https://example.com/video-test,Проверка J.A.R.V.I.C.E,1,pending,
 `;
 fs.writeFileSync(csvPath, csvContent, "utf8");
 

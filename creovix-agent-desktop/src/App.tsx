@@ -9,7 +9,7 @@ export default function App() {
     <ConfirmationProvider>
       <div className="app-shell">
         <header className="app-header">
-          <h1>Джарвис / Creovix Agent</h1>
+          <h1>J.A.R.V.I.C.E</h1>
           <nav className="app-nav">
             <Link to="/">Сценарии</Link>
           </nav>

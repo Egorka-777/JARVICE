@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Creovix Agent Desktop",
+  "productName": "J.A.R.V.I.C.E",
   "version": "0.1.0",
   "identifier": "com.creovix.agent.desktop",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Джарвис / Creovix Agent",
+        "title": "J.A.R.V.I.C.E",
         "width": 1100,
         "height": 760,
         "resizable": true

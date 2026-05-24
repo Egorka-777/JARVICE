@@ -1,6 +1,6 @@
 # JARVICE
 
-Workspace for **Creovix Agent Desktop** — Windows automation app (Tauri + React + Playwright).
+Workspace for **J.A.R.V.I.C.E** — Windows automation app (Tauri + React + Playwright).
 
 ## Project
 

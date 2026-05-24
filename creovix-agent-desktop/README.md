@@ -1,4 +1,4 @@
-# Creovix Agent Desktop
+# J.A.R.V.I.C.E
 
 # Как запустить
 
@@ -11,7 +11,7 @@ npm install
 npm run tauri dev
 ```
 
-3. Должно открыться desktop-окно **«Джарвис / Creovix Agent»**.
+3. Должно открыться desktop-окно **«J.A.R.V.I.C.E»**.
 
 4. Первый тест:
    - нажмите **«Загрузить тест Bing»**;
