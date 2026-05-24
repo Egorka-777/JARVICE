@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "prepare-runtime": "node scripts/prepare-runtime.mjs",
+    "package-release": "node scripts/package-release.mjs",
     "lint": "eslint -c .eslintrc.cjs src database --ext .ts,.tsx",
     "format": "prettier --write \"src/**/*.{ts,tsx}\" \"database/**/*.ts\"",
     "postinstall": "playwright install chromium",

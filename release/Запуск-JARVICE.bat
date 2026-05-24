@@ -1,9 +1,9 @@
 @echo off
 chcp 65001 >nul
-cd /d "%~dp0"
+cd /d "%~dp0JARVICE-Portable"
 if exist "JARVICE.exe" (
-  start "" "%~dp0JARVICE.exe"
+  start "" "%~dp0JARVICE-Portable\JARVICE.exe"
 ) else (
-  echo Файл JARVICE.exe не найден в папке release.
+  echo Папка JARVICE-Portable не найдена. Запустите сборку заново.
   pause
 )

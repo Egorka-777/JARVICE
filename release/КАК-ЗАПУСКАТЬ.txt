@@ -2,10 +2,11 @@ J.A.R.V.I.C.E — запуск без npm и без Node.js
 
 1. САМЫЙ ПРОСТОЙ СПОСОБ
    Дважды щёлкните: Запуск-JARVICE.bat
-   (откроется окно приложения)
+   (откроется окно приложения из папки JARVICE-Portable)
 
 2. ИЛИ напрямую
-   Дважды щёлкните: JARVICE.exe
+   Откройте папку JARVICE-Portable
+   и запустите JARVICE.exe
 
 3. УСТАНОВКА В МЕНЮ «ПУСК» (один раз)
    Запустите: JARVICE-Setup.exe
@@ -15,11 +16,13 @@ J.A.R.V.I.C.E — запуск без npm и без Node.js
    затем установите JARVICE-Setup.exe заново.
 
 4. АВТОМАТИЗАЦИЯ (кнопка «Запустить»)
-   Node.js и npm install больше НЕ нужны.
-   Внутри установщика уже есть Node, Playwright и Chromium.
+   Node.js и npm install НЕ нужны — всё уже внутри.
 
    Первый тест:
    - «Загрузить тест Bing»
    - «Запустить»
    - «Продолжить» в модальном окне
    - «Лог» → Status = done в CSV
+
+ВАЖНО: не переносите только JARVICE.exe отдельно.
+Нужна вся папка JARVICE-Portable (exe + runtime + node.exe).
