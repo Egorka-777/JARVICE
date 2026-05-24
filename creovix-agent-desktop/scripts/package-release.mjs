@@ -32,4 +32,9 @@ cpSync(
   join(root, "..", "release", "JARVICE-Setup.exe"),
 );
 
+const staleRootExe = join(root, "..", "release", "JARVICE.exe");
+if (existsSync(staleRootExe)) {
+  rmSync(staleRootExe);
+}
+
 console.log("[package-release] Portable app:", releaseDir);
